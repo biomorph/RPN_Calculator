@@ -53,8 +53,7 @@
         result = sqrt(self.popOperand);
     }
     else if ([operation isEqualToString:@"π"]){
-        [self.operandStack addObject:[NSNumber numberWithDouble:M_PI]];
-        return M_PI;
+        result = M_PI;
     }
 [self pushOperand:result];
 return result;

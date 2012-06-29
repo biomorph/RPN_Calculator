@@ -66,15 +66,25 @@
 }
 
 - (IBAction)enterPressed {
+    if ([self.historyDisplay.text length]<25){
     self.historyDisplay.text = [self.historyDisplay.text stringByAppendingFormat:self.display.text];//appending the main display string to history display string and displaying it in history display
     self.historyDisplay.text = [self.historyDisplay.text stringByAppendingFormat:@" "];//space in history when enter is pressed
+    }
+    else {
+        self.historyDisplay.text=self.display.text;
+    }
     [self.brain pushOperand:[self.display.text doubleValue]];
      self.ifUserInTheMiddleOfTyping = NO;
 }
 - (IBAction)operationPressed:(UIButton *)sender {
     if (self.ifUserInTheMiddleOfTyping) [self enterPressed];
+    if ([self.historyDisplay.text length]<25){
     self.historyDisplay.text = [self.historyDisplay.text stringByAppendingFormat:sender.currentTitle];//appennding operation that is pressed to the history display string and displaying it in history display
     self.historyDisplay.text = [self.historyDisplay.text stringByAppendingFormat:@"="];// also appending = sign to the history display text when an operation button is pressed
+    }
+    else {
+        self.historyDisplay.text=self.display.text;
+    }
     double result = [self.brain performOperation:sender.currentTitle];
     NSString *resultString = [NSString stringWithFormat:@"%g", result];
     self.display.text = resultString;
