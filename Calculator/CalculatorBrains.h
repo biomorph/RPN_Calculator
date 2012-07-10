@@ -9,9 +9,17 @@
 #import <Foundation/Foundation.h>
 
 @interface CalculatorBrains : NSObject
--(void) pushOperand: (double) operand;
+-(void) pushOperand: (NSString *) operand;
 -(double) performOperation: (NSString*) operation;
 -(void) performClear;
 -(NSString *) performBackSpace: (NSString *) display;
+-(NSArray *) performUndo;
+
+@property (readonly) id program;
+
++ (double) runprogram : (id)program;
++ (NSString *) descriptionOfProgram:(id)program:(NSMutableArray *)operationArray;
++ (double) runprogram:(id)programusingVariableValues:(NSDictionary *)variableValues;
++ (NSSet *) variablesUsedInProgram:(id) program;
 
 @end
