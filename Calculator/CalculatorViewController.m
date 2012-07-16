@@ -20,7 +20,6 @@
 
 @synthesize brain = _brain;
 @synthesize display = _display;
-@synthesize variableDisplay = _variableDisplay;
 @synthesize descriptionDisplay = _descriptionDisplay;
 @synthesize ifUserInTheMiddleOfTyping = _ifUserInTheMiddleOfTyping;
 @synthesize testVariableValues = _testVariableValues;
@@ -97,7 +96,6 @@
 //This button calls performClear method in the brain to clear out the programStack
 {
     self.display.text = @"0"; //set display to 0
-    self.variableDisplay.text=@"";
     self.descriptionDisplay.text=@"";
     self.ifUserInTheMiddleOfTyping=NO;//if clearing user is not in the middle of typing
     [self.brain performClear];// call the perform clear method from brain
@@ -207,40 +205,7 @@
         }
     }
 }
-
-
-- (IBAction)test:(UIButton *)sender 
-//These buttons assign pre-defined values to the variables. Then it passes the programStack to the runProgram:program:tesVariableValues method to evaluate the result
-{
-    if([sender.currentTitle isEqualToString:@"Test1"])
-    {
-        self.testVariableValues = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:4.2],@"x",[NSNumber numberWithDouble:2.6],@"y", nil];
-    }
-    
-    else if ([sender.currentTitle isEqualToString:@"Test2"])
-    {
-        self.testVariableValues = [NSDictionary dictionaryWithObjectsAndKeys:[NSNumber numberWithDouble:-32.8],@"x",[NSNumber numberWithDouble:29.2],@"foo", nil];
-    }
-    
-    else if ([sender.currentTitle isEqualToString:@"Test3"])
-    {
-        self.testVariableValues = [NSDictionary dictionaryWithObjectsAndKeys:nil,@"x",nil,@"y",nil,@"foo", nil];
-    }
-    
-    id program = [self.brain program];
-    
-    if (self.doesProgramHaveVariables) {
-        double result = [CalculatorBrains runprogram:program :self.testVariableValues];
-        self.display.text=[NSString stringWithFormat:@"%g",result];
-        for (NSString *key in self.testVariableValues) {
-            NSNumber *value = [self.testVariableValues objectForKey:key];
-            self.variableDisplay.text = [self.variableDisplay.text stringByAppendingFormat:key];
-            NSString *ofTheValue = [NSString stringWithFormat:@" = %@   ",value];
-            self.variableDisplay.text = [self.variableDisplay.text stringByAppendingFormat:ofTheValue];
-        }
-        self.ifUserInTheMiddleOfTyping = NO;
-        self.doesProgramHaveVariables = NO;//When a test button is pressed, there are no more variables in the program. This is my interpretation of a programmable calc, though I might be wrong.
-    }
+- (IBAction)graphPressed:(id)sender {
 }
 
 
