@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="2">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="MyA-7a-T6U">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1181"/>
     </dependencies>
     <scenes>
-        <!--Calculator View Controller-->
+        <!--Calculator View Controller - Calculator-->
         <scene sceneID="5">
             <objects>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
                 <viewController id="2" customClass="CalculatorViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="3">
-                        <rect key="frame" x="0.0" y="20" width="320" height="460"/>
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
                             <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="waV-68-GHt">
@@ -416,17 +416,55 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="graphPressed:" destination="2" eventType="touchUpInside" id="Bhg-kz-ieB"/>
+                                    <action selector="graphPressed:" destination="2" eventType="touchUpInside" id="PJJ-gQ-5u9"/>
+                                    <segue destination="l28-4L-3Su" kind="push" identifier="ShowGraph" id="xHE-Fb-ctx"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
+                    <navigationItem key="navigationItem" title="Calculator" id="dBW-ax-erl"/>
                     <connections>
                         <outlet property="descriptionDisplay" destination="ezE-iG-LIs" id="DyF-ie-gxS"/>
                         <outlet property="display" destination="waV-68-GHt" id="TWr-hd-ZED"/>
                     </connections>
                 </viewController>
+            </objects>
+            <point key="canvasLocation" x="1154" y="77"/>
+        </scene>
+        <!--Graph View Controller - Graph-->
+        <scene sceneID="h0u-7M-sLC">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="MG7-YT-n92" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="l28-4L-3Su" customClass="GraphViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Vhz-iF-6hR" customClass="GraphView">
+                        <rect key="frame" x="0.0" y="64" width="320" height="416"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Graph" id="cVm-Pn-dcR"/>
+                    <connections>
+                        <outlet property="graphView" destination="Vhz-iF-6hR" id="3vZ-fK-4p0"/>
+                    </connections>
+                </viewController>
+            </objects>
+            <point key="canvasLocation" x="1535" y="75"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="4IS-LD-uTR">
+            <objects>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YI7-gE-dIz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="MyA-7a-T6U" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3l8-NJ-nrh">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="2" kind="relationship" relationship="rootViewController" id="55A-JT-kpQ"/>
+                    </connections>
+                </navigationController>
             </objects>
             <point key="canvasLocation" x="628" y="77"/>
         </scene>
@@ -437,7 +475,15 @@
             <relationships>
                 <relationship kind="outlet" name="descriptionDisplay" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="display" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="variableDisplay" candidateClass="UILabel"/>
+            </relationships>
+        </class>
+        <class className="GraphView" superclassName="UIView">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphView.h"/>
+        </class>
+        <class className="GraphViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="graphView" candidateClass="GraphView"/>
             </relationships>
         </class>
     </classes>

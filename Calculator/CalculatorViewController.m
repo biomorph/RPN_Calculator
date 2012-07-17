@@ -205,8 +205,12 @@
         }
     }
 }
-- (IBAction)graphPressed:(id)sender {
-}
 
+- (IBAction)graphPressed:(id)sender {
+    
+}
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    
+}
 
 @end
