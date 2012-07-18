@@ -12,6 +12,7 @@
 
 @interface GraphViewController : UIViewController
 @property (weak, nonatomic) IBOutlet UILabel *graphDescription;
+@property (weak, nonatomic) IBOutlet UISwitch *graphSwitch;
 
 - (void) getProgram : (id)program;
 - (void) graphDescription:(NSMutableArray*) operations;

@@ -452,6 +452,13 @@
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <switch opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="IUK-kS-fjo">
+                                        <rect key="frame" x="0.0" y="384" width="79" height="27"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <connections>
+                                            <action selector="graphDotOrLine" destination="xfE-xr-XHO" eventType="valueChanged" id="lz9-Ud-EPf"/>
+                                        </connections>
+                                    </switch>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                             </view>
@@ -461,6 +468,7 @@
                     <navigationItem key="navigationItem" title="Graph" id="q3d-1p-eDt"/>
                     <connections>
                         <outlet property="graphDescription" destination="Aqz-eF-9oR" id="VQr-c7-WwE"/>
+                        <outlet property="graphSwitch" destination="IUK-kS-fjo" id="dla-fj-Dk1"/>
                         <outlet property="graphView" destination="N9q-2M-AzP" id="Cv5-KT-c1v"/>
                     </connections>
                 </viewController>
@@ -501,6 +509,7 @@
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphViewController.h"/>
             <relationships>
                 <relationship kind="outlet" name="graphDescription" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="graphSwitch" candidateClass="UISwitch"/>
                 <relationship kind="outlet" name="graphView" candidateClass="GraphView"/>
             </relationships>
         </class>

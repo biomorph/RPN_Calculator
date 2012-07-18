@@ -12,8 +12,7 @@
 
 @protocol GraphViewDataSource
 - (double)graphPoints:(GraphView *) sender:(double)xValue;
-//- (BOOL) dotSwitch:(GraphView *) sender;
-
+- (BOOL) dotOrLine: (GraphView *) sender;
 @end
 
 @interface GraphView : UIView
@@ -25,7 +24,7 @@
 - (void) tripleTap:(UITapGestureRecognizer *)gesture;
 
 @property (nonatomic, weak) id  <GraphViewDataSource> dataSource;
-@property (nonatomic) BOOL dotOrLine;
+@property (nonatomic) id <GraphViewDataSource> dotOrLine;
 
 
 @end

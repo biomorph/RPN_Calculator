@@ -9,6 +9,10 @@
 #import "GraphView.h"
 #import "AxesDrawer.h"
 
+@interface GraphView()
+
+@end
+
 @implementation GraphView
 @synthesize scale = _scale;
 @synthesize origin = _origin;
@@ -98,35 +102,53 @@
 }
 
 
-- (void)drawGraph:(CGPoint)origin atPoint:(CGPoint)coordinates inContext:(CGContextRef) context
-{
-    
-}
-
 - (void)drawRect:(CGRect)rect
 {
     //Make a context
     CGContextRef context = UIGraphicsGetCurrentContext();
+    
     //Make a CGRect to pass to make axes
     CGContextSetLineWidth(context, 2.0);
-    [[UIColor blueColor] setStroke];
+    [[UIColor blueColor] set];
     [AxesDrawer drawAxesInRect:rect originAtPoint:self.origin scale:self.scale];
     CGFloat pixelNumber = [self contentScaleFactor]*self.bounds.size.width;
-    CGContextMoveToPoint(context, 0, 0);
-    for (float xValue = 0; xValue <= pixelNumber; xValue++) {
+    
+    if(![self.dotOrLine dotOrLine:self])
+    {
+        if (self.bounds.size.width < self.bounds.size.height) {
+            CGContextMoveToPoint(context, 0, self.origin.y);
+        }
+        else {
+            CGContextMoveToPoint(context, self.origin.x, 0);
+        }
+        
+        for (float xValue = 0; xValue <= pixelNumber; xValue++) {
         UIGraphicsPushContext(context);
         CGPoint point = CGPointZero;
-        point.x = self.scale*xValue;
-        point.y = (self.origin.y - [self.dataSource graphPoints:self:self.scale*(xValue-self.origin.x)]);
-        if(!self.dotOrLine) CGContextAddLineToPoint(context, point.x, point.y);
-        else if (self.dotOrLine) {
-         CGContextAddArc(context, point.x, point.y, 0.05, 0, 2*M_PI, YES);
-            [[UIColor blueColor]setFill];
+        point.x = xValue;
+        double yValue = [self.dataSource graphPoints:self :(xValue-self.origin.x)/self.scale];
+            point.y = self.origin.y - yValue*self.scale;
+            CGContextAddLineToPoint(context, point.x, point.y);
+        }
+    CGContextStrokePath(context);
+    }
+        else if ([self.dotOrLine dotOrLine:self]) 
+        {
+            for (float xValue = 0; xValue <= pixelNumber; xValue++) {
+                [[UIColor blueColor]set];
+                UIGraphicsPushContext(context);
+                CGPoint point;
+                point.x = xValue;
+                double yValue = [self.dataSource graphPoints:self :(xValue-self.origin.x)/self.scale];
+                point.y = self.origin.y - yValue*self.scale;
+                CGContextFillRect(context, CGRectMake(point.x,point.y,2,2));
+                CGContextStrokePath(context);
+            }
+        
         }
         UIGraphicsPopContext();
 
-    } 
-    CGContextStrokePath(context);
+    
 
 }
 

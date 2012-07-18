@@ -13,13 +13,15 @@
 @interface GraphViewController () <GraphViewDataSource>
 
 @property (nonatomic, weak) IBOutlet GraphView * graphView;
+@property (nonatomic, weak) NSMutableArray * operationsArray;
 @end
 
 @implementation GraphViewController
 @synthesize graphDescription = _graphDescription;
+@synthesize graphSwitch = _graphSwitch;
 @synthesize graphView = _graphView;
 @synthesize programStack = _programStack;
-
+@synthesize operationsArray = _operationsArray;
 
 
 - (id) programStack {
@@ -42,8 +44,15 @@
     
     [self.graphView setNeedsDisplay];
     self.graphView.dataSource = self;
+    self.graphView.dotOrLine = self;
+    self.graphDescription.text = [CalculatorBrains descriptionOfProgram:self.programStack :self.operationsArray];
+
 }
 
+
+- (IBAction)graphDotOrLine {
+    [self.graphView setNeedsDisplay];
+}
 
 - (void) getProgram : (id)program {
     self.programStack = program;
@@ -61,9 +70,12 @@
 }
 
 - (void)graphDescription:(NSMutableArray*) operations{
-    NSLog(@"operationarray %@",operations);
-    NSLog(@"graph description %@",self.graphDescription.text);
-    //self.graphDescription.text = @"WTF";
+    self.operationsArray = operations;
+
+}
+
+- (BOOL) dotOrLine:(GraphView *)sender{
+    return self.graphSwitch.on;
 }
 
 
@@ -72,12 +84,8 @@
     return YES;
 }
 
--(void) viewDidLoad{
-    self.graphDescription.text = @"test";
-    [super viewDidLoad];
-}
 - (void)viewDidUnload {
-    [self setGraphDescription:nil];
+    [self setGraphSwitch:nil];
     [super viewDidUnload];
 }
 @end

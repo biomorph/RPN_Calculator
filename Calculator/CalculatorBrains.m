@@ -236,7 +236,11 @@
         
         else if ([operation isEqualToString:@"sqrt"])
         {
-            result = sqrt([self popOperandOffStack:stack]);
+            double operand = [self popOperandOffStack:stack];
+            if (operand >0) {
+               result = sqrt(operand);
+            }
+             else result = 0;
         }
         
         else if ([operation isEqualToString:@"π"])
