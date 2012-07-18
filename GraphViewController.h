@@ -7,8 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "GraphView.h"
+
 
 @interface GraphViewController : UIViewController
+@property (weak, nonatomic) IBOutlet UILabel *graphDescription;
 
-@property (nonatomic, weak) NSArray * dataPoints; //These are points from my runProgram:withVariables
+- (void) getProgram : (id)program;
+- (void) graphDescription:(NSMutableArray*) operations;
+@property (nonatomic, strong) id programStack;
 @end

@@ -8,13 +8,16 @@
 
 #import "CalculatorViewController.h"
 #import "CalculatorBrains.h"
+#import "GraphViewController.h"
 
 @interface CalculatorViewController ()
 @property (nonatomic) BOOL ifUserInTheMiddleOfTyping; //Property to check if user is in the middle of typing 
 @property (nonatomic, strong) CalculatorBrains * brain; //Property to create an instance of the CalculatorBrains Class
-@property (nonatomic, strong) NSDictionary *testVariableValues;//NSDictionary property to hold the variables and corresponding values for test cases
+@property (nonatomic, strong) NSDictionary *VariableValues;//NSDictionary property to hold the variables and corresponding values for test cases
 @property (nonatomic) BOOL doesProgramHaveVariables;//Property to check if a program has any variables in it
 @property (nonatomic,strong) NSMutableArray *operationArray;//NSMutableArray property to store pressed operations, use this for description and removing extraneous brackets
+
+@property (nonatomic, weak) GraphViewController *graphController;
 @end
 @implementation CalculatorViewController
 
@@ -22,9 +25,11 @@
 @synthesize display = _display;
 @synthesize descriptionDisplay = _descriptionDisplay;
 @synthesize ifUserInTheMiddleOfTyping = _ifUserInTheMiddleOfTyping;
-@synthesize testVariableValues = _testVariableValues;
+@synthesize VariableValues = _VariableValues;
 @synthesize doesProgramHaveVariables;
 @synthesize operationArray = _operationArray;
+@synthesize graphController = _graphController;
+
 
 - (NSMutableArray *)operationArray
 //Lazy instantiation of the operationArray
@@ -41,6 +46,7 @@
     if (!_brain) _brain = [[CalculatorBrains alloc] init];
     return _brain;
 }
+
 
 
 - (IBAction)digitPressed:(UIButton *)sender 
@@ -206,11 +212,21 @@
     }
 }
 
+
 - (IBAction)graphPressed:(id)sender {
-    
+    [self performSegueWithIdentifier:@"ShowGraph" sender:sender];
 }
--(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
-    
+
+- (void) prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender{
+    if ([segue.identifier isEqualToString:@"ShowGraph"]){
+        
+    GraphViewController *nextView = segue.destinationViewController;
+    [nextView getProgram:[self.brain program]];
+    [nextView graphDescription:self.operationArray];
+    }
 }
+
+
+
 
 @end

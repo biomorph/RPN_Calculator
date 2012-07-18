@@ -8,6 +8,13 @@
 
 #import <UIKit/UIKit.h>
 
+@class GraphView;
+
+@protocol GraphViewDataSource
+- (double)graphPoints:(GraphView *) sender:(double)xValue;
+//- (BOOL) dotSwitch:(GraphView *) sender;
+
+@end
 
 @interface GraphView : UIView
 
@@ -16,6 +23,9 @@
 - (void) pinch:(UIPinchGestureRecognizer *)gesture;
 - (void) pan:(UIPanGestureRecognizer *)gesture;
 - (void) tripleTap:(UITapGestureRecognizer *)gesture;
+
+@property (nonatomic, weak) id  <GraphViewDataSource> dataSource;
+@property (nonatomic) BOOL dotOrLine;
 
 
 @end

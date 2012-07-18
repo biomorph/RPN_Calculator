@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="MyA-7a-T6U">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="1.1" toolsVersion="2182" systemVersion="11E53" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" initialViewController="s5X-DQ-CPq">
     <dependencies>
         <deployment defaultVersion="1296" identifier="iOS"/>
         <development defaultVersion="4200" identifier="xcode"/>
@@ -15,13 +15,6 @@
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
-                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="waV-68-GHt">
-                                <rect key="frame" x="3" y="6" width="314" height="28"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
-                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="Obe-d5-qkL">
                                 <rect key="frame" x="23" y="116" width="64" height="37"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -417,9 +410,15 @@
                                 </state>
                                 <connections>
                                     <action selector="graphPressed:" destination="2" eventType="touchUpInside" id="PJJ-gQ-5u9"/>
-                                    <segue destination="l28-4L-3Su" kind="push" identifier="ShowGraph" id="xHE-Fb-ctx"/>
                                 </connections>
                             </button>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="waV-68-GHt">
+                                <rect key="frame" x="3" y="6" width="314" height="28"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="24"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
@@ -427,46 +426,64 @@
                     <connections>
                         <outlet property="descriptionDisplay" destination="ezE-iG-LIs" id="DyF-ie-gxS"/>
                         <outlet property="display" destination="waV-68-GHt" id="TWr-hd-ZED"/>
+                        <segue destination="xfE-xr-XHO" kind="push" identifier="ShowGraph" id="Na2-B1-8XV"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1154" y="77"/>
+            <point key="canvasLocation" x="1680" y="77"/>
         </scene>
         <!--Graph View Controller - Graph-->
-        <scene sceneID="h0u-7M-sLC">
+        <scene sceneID="CM5-B1-skb">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MG7-YT-n92" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <viewController id="l28-4L-3Su" customClass="GraphViewController" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Vhz-iF-6hR" customClass="GraphView">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="YxI-L8-Ol9" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <viewController id="xfE-xr-XHO" customClass="GraphViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="eRA-Di-KYd">
                         <rect key="frame" x="0.0" y="64" width="320" height="416"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" id="N9q-2M-AzP" customClass="GraphView">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="416"/>
+                                <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                <subviews>
+                                    <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" id="Aqz-eF-9oR">
+                                        <rect key="frame" x="25" y="384" width="275" height="21"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                            </view>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                     </view>
-                    <navigationItem key="navigationItem" title="Graph" id="cVm-Pn-dcR"/>
+                    <navigationItem key="navigationItem" title="Graph" id="q3d-1p-eDt"/>
                     <connections>
-                        <outlet property="graphView" destination="Vhz-iF-6hR" id="3vZ-fK-4p0"/>
+                        <outlet property="graphDescription" destination="Aqz-eF-9oR" id="VQr-c7-WwE"/>
+                        <outlet property="graphView" destination="N9q-2M-AzP" id="Cv5-KT-c1v"/>
                     </connections>
                 </viewController>
             </objects>
-            <point key="canvasLocation" x="1535" y="75"/>
+            <point key="canvasLocation" x="2089" y="73"/>
         </scene>
         <!--Navigation Controller-->
-        <scene sceneID="4IS-LD-uTR">
+        <scene sceneID="6o9-pl-36s">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="YI7-gE-dIz" userLabel="First Responder" sceneMemberID="firstResponder"/>
-                <navigationController id="MyA-7a-T6U" sceneMemberID="viewController">
+                <placeholder placeholderIdentifier="IBFirstResponder" id="S2M-as-afV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <navigationController id="s5X-DQ-CPq" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="3l8-NJ-nrh">
+                    <navigationBar key="navigationBar" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" id="RDa-IE-3xY">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
-                        <segue destination="2" kind="relationship" relationship="rootViewController" id="55A-JT-kpQ"/>
+                        <segue destination="2" kind="relationship" relationship="rootViewController" id="Gqq-zo-bka"/>
                     </connections>
                 </navigationController>
             </objects>
-            <point key="canvasLocation" x="628" y="77"/>
+            <point key="canvasLocation" x="1154" y="77"/>
         </scene>
     </scenes>
     <classes>
@@ -483,6 +500,7 @@
         <class className="GraphViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/GraphViewController.h"/>
             <relationships>
+                <relationship kind="outlet" name="graphDescription" candidateClass="UILabel"/>
                 <relationship kind="outlet" name="graphView" candidateClass="GraphView"/>
             </relationships>
         </class>
